@@ -1,6 +1,6 @@
 # Instructions
 
-* Download the ZIP file from the releases tab and extract it into a local folder;
+* Download the "VimeoPlayerDownload.v1.zip" file from the Releases tab above and extract it into a local folder;
 * Go to the web page that's showing the Vimeo player and view the source (Ctrl+U in Chrome);
 * Find the URL to the Vimeo player:
   * Click Ctrl+F;
