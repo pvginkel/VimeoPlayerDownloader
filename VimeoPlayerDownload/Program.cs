@@ -35,7 +35,28 @@ namespace VimeoPlayerDownload
 
             var jsonContent = (JObject)JToken.Parse(content);
 
+            Console.WriteLine("Downloading video");
+
             var videos = (JArray)jsonContent["video"];
+
+            DownloadSegments(videos, masterUrl, jsonContent, targetFileName);
+
+            var audios = jsonContent["audio"];
+
+            if (audios != null)
+            {
+                string audioTargetFileName =
+                    Path.Combine(
+                        Path.GetDirectoryName(targetFileName),
+                        Path.GetFileNameWithoutExtension(targetFileName) + "-audio" + Path.GetExtension(targetFileName)
+                    );
+
+                DownloadSegments((JArray)audios, masterUrl, jsonContent, audioTargetFileName);
+            }
+        }
+
+        private static void DownloadSegments(JArray videos, string masterUrl, JObject jsonContent, string targetFileName)
+        {
             long largestBitrate = -1;
             JObject largest = null;
 
